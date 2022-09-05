@@ -1,0 +1,439 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form class="form" action="confirmation" method="post">
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Reporting
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ "Hospitality received" if (data['received-or-offered'] == "received") else "Hospitality offered"}}
+          </dd>
+        </div>
+        {% if (data['received-or-offered'] == "received") %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Decision taken
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ "Accepted hospitality" if (data['hospitality-decision'] == "accept") else "Rejected hospitality"}}
+          </dd>
+        </div>
+        {% endif %}
+
+        {% if (data['individual-hospitality'] == "yes") %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Self-Approved by
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Cahil De Menezes
+          </dd>
+        </div>
+        {% endif %}
+        {% if (data['individual-hospitality'] == "no") %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Delegated authority approval obtained
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['delegated-authority-approval'] | capitalize }}
+          </dd>
+        </div>
+        {% endif %}
+        {% if (data['individual-hospitality'] == "no" and data['delegated-authority-approval'] == "no") %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Reasons why approval was not obtained
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['reason-for-disapproval'] }}
+          </dd>
+        </div>
+        {% endif %}
+      </dl>
+
+      {% if (data['individual-hospitality'] == "yes") %}
+      <h2 class="govuk-heading-m">{{ "Recipient" if (data['received-or-offered'] == "received") else "Donor"}} details
+      </h2>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Cahil De Menezes
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            cahil.de_menezes@homeoffice.gov.uk
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Grade
+          </dt>
+          <dd class="govuk-summary-list__value">
+            SCS 2
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Position
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Interaction Designer
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Department/Cost Centre
+          </dt>
+          <dd class="govuk-summary-list__value">
+            UX - 249300
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Business Area
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Customer Services
+          </dd>
+        </div>
+      </dl>
+      {% endif %}
+
+      {% if (data['individual-hospitality'] == "no" and data['on-behalf-of'] == "employee") %}
+      <h2 class="govuk-heading-m">{{ "Recipient" if (data['received-or-offered'] == "received") else "Donor"}} details
+      </h2>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Daniel Blair
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            daniel.blair@homeoffice.gov.uk
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Grade
+          </dt>
+          <dd class="govuk-summary-list__value">
+            SEO
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Position
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Service Cloud Specialist
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Department/Cost Centre
+          </dt>
+          <dd class="govuk-summary-list__value">
+            BXL - 132777
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Business Area
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Software
+          </dd>
+        </div>
+      </dl>
+      {% endif %}
+
+      {% if (data['individual-hospitality'] == "no" and data['on-behalf-of'] == "other") %}
+      <h2 class="govuk-heading-m">{{ "Recipient" if (data['received-or-offered'] == "received") else "Donor"}} details
+      </h2>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['someone-else-name'] }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['someone-else-email'] }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Grade
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if(data['someone-else-grade'] == "aa-and-equiv") %}
+            AA and equivalents
+            {% endif %}
+            {% if(data['someone-else-grade'] == "ao-and-equiv") %}
+            AO and equivalents
+            {% endif %}
+            {% if(data['someone-else-grade'] == "eo-and-equiv") %}
+            EO and equivalents
+            {% endif %}
+            {% if(data['someone-else-grade'] == "heo-and-equiv") %}
+            HEO and equivalents
+            {% endif %}
+            {% if(data['someone-else-grade'] == "seo-and-equiv") %}
+            SEO and equivalents
+            {% endif %}
+            {% if(data['someone-else-grade'] == "grade-6-and-equiv") %}
+            Grade 6 and equivalents
+            {% endif %}
+            {% if(data['someone-else-grade'] == "grade-7-and-equiv") %}
+            Grade 7 and equivalents
+            {% endif %}
+            {% if(data['someone-else-grade'] == "scs1") %}
+            SCS 1
+            {% endif %}
+            {% if(data['someone-else-grade'] == "scs2") %}
+            SCS 2
+            {% endif %}
+            {% if(data['someone-else-grade'] == "scs3") %}
+            SCS 3
+            {% endif %}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Department/Cost Centre
+          </dt>
+          <dd class="govuk-summary-list__value">
+            BXL - 132777
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Business Area
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Software
+          </dd>
+        </div>
+      </dl>
+      {% endif %}
+
+      <h2 class="govuk-heading-m">{{ "Donor" if (data['received-or-offered'] == "received") else "Recipient"}}
+        details</h2>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['other-party-name'] }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Contact details
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <pre>{{ data['other-party-contact-details'] }}</pre>
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="govuk-heading-m">Event details</h2>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Event name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <ul>
+              {{ data['event-name'] }}
+            </ul>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Type of event attended
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['event-type'] }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Event date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if(data['event-date'] == "2022-08-12") %}
+            12 August 2022
+            {% endif %}
+            {% if(data['event-date'] == "2022-08-11") %}
+            11 August 2022
+            {% endif %}
+            {% if(data['event-date'] == "2022-08-10") %}
+            10 August 2022
+            {% endif %}
+            {% if(data['event-date'] == "2022-08-09") %}
+            09 August 2022
+            {% endif %}
+            {% if(data['event-date'] == "2022-08-08") %}
+            08 August 2022
+            {% endif %}
+          </dd>
+        </div>
+
+
+        {% if(data['received-or-offered'] == "offered") %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Total number of guests attending
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['number-of-guests'] }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Number of civil servants attending
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['number-of-civil-servants'] }}
+          </dd>
+        </div>
+        {% else %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Attend the hospitality event alone or accompanied
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['alone-or-accompanied'] | capitalize}}
+          </dd>
+        </div>
+        {% endif %}
+      </dl>
+
+
+      <h2 class="govuk-heading-m">Hospitality details</h2>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Reason for hospitality
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['reason-for-hospitality'] }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Cost per person, in pounds
+          </dt>
+          <dd class="govuk-summary-list__value">
+            £{{ data['cost-per-person'] }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Total cost, in pounds
+          </dt>
+          <dd class="govuk-summary-list__value">
+            £{{ data['total-cost'] }}
+          </dd>
+        </div>
+
+
+        {% if(data['received-or-offered'] == "offered") %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Obtained from approved supplier
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['approved-supplier-used'] | capitalize}}
+          </dd>
+        </div>
+        {% if(data['approved-supplier-used'] == "no") %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Reason why approved supplier was not used
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['approved-supplier-not-used-reason'] }}
+          </dd>
+        </div>
+        {% endif %}
+        {% endif %}
+      </dl>
+
+
+      {% if (data['individual-hospitality'] == "no" and data['delegated-authority-approval'] == "yes") %}
+      <h2 class="govuk-heading-m">Approver details</h2>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Cahil De Menezes
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email
+          </dt>
+          <dd class="govuk-summary-list__value">
+            cahil.de_menezes@homeoffice.gov.uk
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Grade
+          </dt>
+          <dd class="govuk-summary-list__value">
+            SCS 2
+          </dd>
+        </div>
+        {% endif %}
+      </dl>
+
+      <button class="govuk-button" data-module="govuk-button">Submit</button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

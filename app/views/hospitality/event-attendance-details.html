@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+{{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if (data['received-or-offered'] == "offered") %}
+    <h1 class="govuk-heading-l">Event attendance details</h1>
+    {% endif %}
+
+    <form class="form" action="type-of-hospitality" method="post">
+
+      {% if (data['received-or-offered'] == "offered") %}
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-label--m" for="number-of-guests">
+          Total number of guests attending
+        </label>
+        <input class="govuk-input govuk-input--width-3" id="number-of-guests" name="number-of-guests" type="number"
+          value="{{ data['number-of-guests'] }}" step="1" min="1" autocomplete="off">
+      </div>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-label--m" for="number-of-civil-servants">
+          Number of civil servants attending
+        </label>
+
+        <input class="govuk-input govuk-input--width-3" id="number-of-civil-servants" name="number-of-civil-servants"
+          type="number" value="{{ data['number-of-civil-servants'] }}" step="1" min="1" autocomplete="off">
+      </div>
+
+      <div class="govuk-inset-text">
+        Where civil servants are required to attend any hospitality event, they must not exceed 50% of the total
+        number of people attending.
+      </div>
+      {% else %}
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Did {{ "you" if (data['individual-hospitality'] == "yes") else "the recipient"}} attend the hospitality
+              event alone or accompanied?
+            </h1>
+          </legend>
+          <div id="alone-or-accompanied-hint" class="govuk-hint">
+            For example, with a spouse, family members and/or friends.
+          </div>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="alone-or-accompanied" name="alone-or-accompanied" type="radio"
+                value="alone" {{ checked( "alone-or-accompanied" , "alone" ) }}>
+              <label class="govuk-label govuk-radios__label" for="alone-or-accompanied">
+                Alone
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="alone-or-accompanied-2" name="alone-or-accompanied" type="radio"
+                value="accompanied" {{ checked( "alone-or-accompanied" , "accompanied" ) }}>
+              <label class="govuk-label govuk-radios__label" for="alone-or-accompanied-2">
+                Accompanied
+              </label>
+            </div>
+        </fieldset>
+      </div>
+      {% endif %}
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

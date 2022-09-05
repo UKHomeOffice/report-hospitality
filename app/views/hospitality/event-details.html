@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+{{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">Event details</h1>
+
+    <form class="form" action="/event-details-redirect" method="post">
+
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-label--m" for="event-name">
+          Event name
+        </label>
+        <input class="govuk-input govuk-input--width-20" id="event-name" name="event-name" type="text"
+          value="{{ data['event-name'] }}" aria-describedby="event-name-hint" autocomplete="off">
+      </div>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-label--m" for="event-type">
+          Type of event
+        </label>
+        <div id="event-type-hint" class="govuk-hint">
+          For example, a dinner or a conference.
+        </div>
+        <input class="govuk-input govuk-input--width-20" id="event-type" name="event-type" type="text"
+          value="{{ data['event-type'] }}" aria-describedby="event-type-hint" autocomplete="off">
+      </div>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-label--m" for="event-date">
+          Event date
+        </label>
+        <input class="govuk-input govuk-input--width-10" id="event-date" name="event-date"
+          value="{{ data['event-date'] }}" type="date" autocomplete="off">
+      </div>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

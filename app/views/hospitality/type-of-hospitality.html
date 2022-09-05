@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+{{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form class="form" action="hospitality-details" method="post">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="hospitality-type-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            Select the type of hospitality {{ "received" if (data['received-or-offered'] == "received") else
+            "offered" }}
+          </legend>
+          <div id="hospitality-type-hint" class="govuk-hint">
+            Select all that apply.
+          </div>
+          <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="hospitality-type" name="hospitality-type" type="checkbox"
+                value="lunch" {{ checked( "hospitality-type" , "lunch" ) }}>
+              <label class="govuk-label govuk-checkboxes__label" for="hospitality-type">
+                Lunch
+              </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="hospitality-type-2" name="hospitality-type" type="checkbox"
+                value="dinner" {{ checked( "hospitality-type" , "dinner" ) }}>
+              <label class="govuk-label govuk-checkboxes__label" for="hospitality-type-2">
+                Dinner
+              </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="hospitality-type-3" name="hospitality-type" type="checkbox"
+                value="drinks" {{ checked( "hospitality-type" , "drinks" ) }}>
+              <label class="govuk-label govuk-checkboxes__label" for="hospitality-type-3">
+                Drinks
+              </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="hospitality-type-4" name="hospitality-type" type="checkbox"
+                value="entertainment" {{ checked( "hospitality-type" , "entertainment" ) }}>
+              <label class="govuk-label govuk-checkboxes__label" for="hospitality-type-4">
+                Entertainment
+              </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="hospitality-type-5" name="hospitality-type" type="checkbox"
+                value="accommodation" {{ checked( "hospitality-type" , "accommodation" ) }}>
+              <label class="govuk-label govuk-checkboxes__label" for="hospitality-type-5">
+                Accommodation
+              </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="hospitality-type-6" name="hospitality-type" type="checkbox"
+                value="transport" {{ checked( "hospitality-type" , "transport" ) }}>
+              <label class="govuk-label govuk-checkboxes__label" for="hospitality-type-6">
+                Transport
+              </label>
+            </div>
+          </div>
+
+        </fieldset>
+      </div>
+
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

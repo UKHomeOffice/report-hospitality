@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+{{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form class="form" action="/delegated-authority-approval-redirect" method="post">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              {% if "drinks" in data["hospitality-type"] and data["received-or-offered"]=="offered" %}
+              Do you have approval from a delegated authority (SCS 2 or above)?
+              {% else %}
+              Do you have approval from a delegated authority (SCS 1 or above)?
+              {% endif %}
+            </h1>
+          </legend>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="delegated-authority-approval" name="delegated-authority-approval"
+                type="radio" value="yes" {{ checked( "delegated-authority-approval" , "yes" ) }}>
+              <label class="govuk-label govuk-radios__label" for="delegated-authority-approval">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="delegated-authority-approval-2" name="delegated-authority-approval"
+                type="radio" value="no" {{ checked( "delegated-authority-approval" , "no" ) }}>
+              <label class="govuk-label govuk-radios__label" for="delegated-authority-approval-2">
+                No
+              </label>
+            </div>
+          </div>
+
+        </fieldset>
+      </div>
+
+      {% if "drinks" in data["hospitality-type"] and data["received-or-offered"]=="offered" %}
+      <div class="govuk-inset-text">
+        The offer of alcohol at any Home Office event must be approved in writing by an SCS 2 or above. This approval
+        must be received in advance in all cases.
+      </div>
+      {% endif %}
+
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-warning-text__assistive">Warning</span>
+          Your declaration may be non-compliant if you do not have the appropriate approval.
+        </strong>
+      </div>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

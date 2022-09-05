@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+{{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form class="form" action="/approved-supplier-redirect" method="post">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Was the hospitality booked through an approved supplier?
+            </h1>
+          </legend>
+          <div id="approved-supplier-used-hint" class="govuk-hint">
+            For example, Crown Commercial Services or Calder Conferences.
+          </div>
+
+          <div class="govuk-radios" data-module="govuk-radios">
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="approved-supplier-used" name="approved-supplier-used" type="radio"
+                value="yes" {{ checked( "approved-supplier-used" , "yes" ) }}>
+              <label class="govuk-label govuk-radios__label" for="approved-supplier-used">
+                Yes
+              </label>
+            </div>
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="approved-supplier-used-2" name="approved-supplier-used"
+                type="radio" value="no" {{ checked( "approved-supplier-used" , "no" ) }}
+                data-aria-controls="conditional-reason">
+              <label class="govuk-label govuk-radios__label" for="approved-supplier-used-2">
+                No
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-reason">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="contact-by-phone">
+                  Reason why an approved supplier was not used
+                </label>
+                <textarea class="govuk-textarea" id="approved-supplier-not-used-reason"
+                  name="approved-supplier-not-used-reason"
+                  rows="3">{{ data['approved-supplier-not-used-reason'] }}</textarea>
+              </div>
+            </div>
+
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="govuk-inset-text">
+        For more information on approved suppliers, <a href="#" rel="noreferrer noopener" target="_blank">refer the
+          policy (opens in a new window or tab)</a>.
+      </div>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
