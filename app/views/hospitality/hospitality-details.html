@@ -22,24 +22,10 @@
           Reason for the hospitality
         </label>
         <div id="reason-for-hospitality-hint" class="govuk-hint">
-          For example, a diplomatic gesture.
+          For example, hosting a dinner for 10 people.
         </div>
         <input class="govuk-input" id="reason-for-hospitality" name="reason-for-hospitality"
           value="{{ data['reason-for-hospitality'] }}" type="text" autocomplete="off">
-      </div>
-
-      <div class="govuk-form-group">
-        <label class="govuk-label govuk-label--m" for="cost-per-person">
-          Cost per person, in pounds
-        </label>
-        <div id="cost-per-person-hint" class="govuk-hint">
-          If you do not know this, provide your best estimate.
-        </div>
-        <div class="govuk-input__wrapper">
-          <div class="govuk-input__prefix" aria-hidden="true">£</div>
-          <input class="govuk-input govuk-input--width-5" id="cost-per-person" name="cost-per-person"
-            value="{{ data['cost-per-person'] }}" type="text" spellcheck="false" autocomplete="off">
-        </div>
       </div>
 
       <div class="govuk-form-group">

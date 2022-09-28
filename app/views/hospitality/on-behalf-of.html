@@ -19,8 +19,8 @@
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-fieldset__heading">
-              Who was the {{ "recipient" if (data['received-or-offered'] == "received") else "donor"}} of the
-              hospitality?
+              Who was the {{ "recipient" if (data['reporting'] == "hospitality-received-and-accepted") or
+              (data['reporting'] == "hospitality-received-and-rejected") else "donor"}} of the hospitality?
             </h1>
           </legend>
           <div class="govuk-radios" data-module="govuk-radios">
@@ -35,10 +35,11 @@
               <input class="govuk-radios__input" id="on-behalf-of-2" name="on-behalf-of" type="radio" value="other" {{
                 checked( "on-behalf-of" , "other" ) }}>
               <label class="govuk-label govuk-radios__label" for="on-behalf-of-2">
-                Other {{ "recipient" if (data['received-or-offered'] == "received") else "donor"}}
+                Other {{ "recipient" if (data['reporting'] == "hospitality-received-and-accepted") or
+                (data['reporting'] == "hospitality-received-and-rejected") else "donor"}}
               </label>
-              <div id="third-party-2-hint" class="govuk-hint govuk-radios__hint">
-                could be a unit, team, department or company
+              <div id="on-behalf-of-2-hint" class="govuk-hint govuk-radios__hint">
+                Could be a team, unit or department.
               </div>
             </div>
           </div>

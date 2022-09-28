@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
@@ -21,31 +21,33 @@ Question page template – {{ serviceName }} – GOV.UK Prototype Kit
             Reporting
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ "Hospitality received" if (data['received-or-offered'] == "received") else "Hospitality offered"}}
-          </dd>
-        </div>
-        {% if (data['received-or-offered'] == "received") %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Decision taken
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ "Accepted hospitality" if (data['hospitality-decision'] == "accept") else "Rejected hospitality"}}
-          </dd>
-        </div>
-        {% endif %}
+            {% if (data['reporting'] == "hospitality-received-and-accepted" and data['on-someones-behalf'] == "yes") %}
+            Hospitality received and accepted
+            {% endif %}
 
-        {% if (data['individual-hospitality'] == "yes") %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Self-Approved by
-          </dt>
-          <dd class="govuk-summary-list__value">
-            Cahil De Menezes
+            {% if (data['reporting'] == "hospitality-received-and-accepted" and data['on-someones-behalf'] == "no") %}
+            Hospitality I received and accepted
+            {% endif %}
+
+            {% if (data['reporting'] == "hospitality-received-and-rejected" and data['on-someones-behalf'] == "yes") %}
+            Hospitality received and rejected
+            {% endif %}
+
+            {% if (data['reporting'] == "hospitality-received-and-rejected" and data['on-someones-behalf'] == "no") %}
+            Hospitality I received and rejected
+            {% endif %}
+
+            {% if (data['reporting'] == "hospitality-offered" and data['on-someones-behalf'] == "yes") %}
+            Hospitality offered
+            {% endif %}
+
+            {% if (data['reporting'] == "hospitality-offered" and data['on-someones-behalf'] == "no") %}
+            Hospitality I offered
+            {% endif %}
           </dd>
         </div>
-        {% endif %}
-        {% if (data['individual-hospitality'] == "no") %}
+
+        {% if (data['on-someones-behalf'] == "yes") %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Delegated authority approval obtained
@@ -55,7 +57,8 @@ Question page template – {{ serviceName }} – GOV.UK Prototype Kit
           </dd>
         </div>
         {% endif %}
-        {% if (data['individual-hospitality'] == "no" and data['delegated-authority-approval'] == "no") %}
+
+        {% if (data['on-someones-behalf'] == "yes" and data['delegated-authority-approval'] == "no") %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Reasons why approval was not obtained
@@ -67,8 +70,10 @@ Question page template – {{ serviceName }} – GOV.UK Prototype Kit
         {% endif %}
       </dl>
 
-      {% if (data['individual-hospitality'] == "yes") %}
-      <h2 class="govuk-heading-m">{{ "Recipient" if (data['received-or-offered'] == "received") else "Donor"}} details
+      {% if (data['on-someones-behalf'] == "no") %}
+      <h2 class="govuk-heading-m">
+        {{ "Recipient" if (data['reporting'] == "hospitality-received-and-accepted") or
+        (data['reporting'] == "hospitality-received-and-rejected") else "Donor"}} details
       </h2>
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
@@ -81,7 +86,7 @@ Question page template – {{ serviceName }} – GOV.UK Prototype Kit
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Email address
+            Email
           </dt>
           <dd class="govuk-summary-list__value">
             cahil.de_menezes@homeoffice.gov.uk
@@ -105,7 +110,7 @@ Question page template – {{ serviceName }} – GOV.UK Prototype Kit
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Department/Cost Centre
+            Department and cost centre
           </dt>
           <dd class="govuk-summary-list__value">
             UX - 249300
@@ -113,7 +118,7 @@ Question page template – {{ serviceName }} – GOV.UK Prototype Kit
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Business Area
+            Business area
           </dt>
           <dd class="govuk-summary-list__value">
             Customer Services
@@ -122,8 +127,10 @@ Question page template – {{ serviceName }} – GOV.UK Prototype Kit
       </dl>
       {% endif %}
 
-      {% if (data['individual-hospitality'] == "no" and data['on-behalf-of'] == "employee") %}
-      <h2 class="govuk-heading-m">{{ "Recipient" if (data['received-or-offered'] == "received") else "Donor"}} details
+      {% if (data['on-someones-behalf'] == "yes" and data['on-behalf-of'] == "employee") %}
+      <h2 class="govuk-heading-m">
+        {{ "Recipient" if (data['reporting'] == "hospitality-received-and-accepted") or
+        (data['reporting'] == "hospitality-received-and-rejected") else "Donor"}} details
       </h2>
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
@@ -136,7 +143,7 @@ Question page template – {{ serviceName }} – GOV.UK Prototype Kit
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Email address
+            Email
           </dt>
           <dd class="govuk-summary-list__value">
             daniel.blair@homeoffice.gov.uk
@@ -160,7 +167,7 @@ Question page template – {{ serviceName }} – GOV.UK Prototype Kit
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Department/Cost Centre
+            Department and cost centre
           </dt>
           <dd class="govuk-summary-list__value">
             BXL - 132777
@@ -168,7 +175,7 @@ Question page template – {{ serviceName }} – GOV.UK Prototype Kit
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Business Area
+            Business area
           </dt>
           <dd class="govuk-summary-list__value">
             Software
@@ -177,8 +184,10 @@ Question page template – {{ serviceName }} – GOV.UK Prototype Kit
       </dl>
       {% endif %}
 
-      {% if (data['individual-hospitality'] == "no" and data['on-behalf-of'] == "other") %}
-      <h2 class="govuk-heading-m">{{ "Recipient" if (data['received-or-offered'] == "received") else "Donor"}} details
+      {% if (data['on-someones-behalf'] == "yes" and data['on-behalf-of'] == "other") %}
+      <h2 class="govuk-heading-m">
+        {{ "Recipient" if (data['reporting'] == "hospitality-received-and-accepted") or
+        (data['reporting'] == "hospitality-received-and-rejected") else "Donor"}} details
       </h2>
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
@@ -189,12 +198,25 @@ Question page template – {{ serviceName }} – GOV.UK Prototype Kit
             {{ data['someone-else-name'] }}
           </dd>
         </div>
+      </dl>
+      <h3 class="govuk-heading-s">
+        Home Office representative's details
+      </h3>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Max Thompson
+          </dd>
+        </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Email address
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['someone-else-email'] }}
+            max.thompson@homeoffice.gov.uk
           </dd>
         </div>
         <div class="govuk-summary-list__row">
@@ -202,41 +224,20 @@ Question page template – {{ serviceName }} – GOV.UK Prototype Kit
             Grade
           </dt>
           <dd class="govuk-summary-list__value">
-            {% if(data['someone-else-grade'] == "aa-and-equiv") %}
-            AA and equivalents
-            {% endif %}
-            {% if(data['someone-else-grade'] == "ao-and-equiv") %}
-            AO and equivalents
-            {% endif %}
-            {% if(data['someone-else-grade'] == "eo-and-equiv") %}
-            EO and equivalents
-            {% endif %}
-            {% if(data['someone-else-grade'] == "heo-and-equiv") %}
-            HEO and equivalents
-            {% endif %}
-            {% if(data['someone-else-grade'] == "seo-and-equiv") %}
-            SEO and equivalents
-            {% endif %}
-            {% if(data['someone-else-grade'] == "grade-6-and-equiv") %}
-            Grade 6 and equivalents
-            {% endif %}
-            {% if(data['someone-else-grade'] == "grade-7-and-equiv") %}
-            Grade 7 and equivalents
-            {% endif %}
-            {% if(data['someone-else-grade'] == "scs1") %}
-            SCS 1
-            {% endif %}
-            {% if(data['someone-else-grade'] == "scs2") %}
-            SCS 2
-            {% endif %}
-            {% if(data['someone-else-grade'] == "scs3") %}
-            SCS 3
-            {% endif %}
+            EO
           </dd>
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Department/Cost Centre
+            Position
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Client Relations Executive
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Department and cost centre
           </dt>
           <dd class="govuk-summary-list__value">
             BXL - 132777
@@ -244,7 +245,7 @@ Question page template – {{ serviceName }} – GOV.UK Prototype Kit
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Business Area
+            Business area
           </dt>
           <dd class="govuk-summary-list__value">
             Software
@@ -253,8 +254,8 @@ Question page template – {{ serviceName }} – GOV.UK Prototype Kit
       </dl>
       {% endif %}
 
-      <h2 class="govuk-heading-m">{{ "Donor" if (data['received-or-offered'] == "received") else "Recipient"}}
-        details</h2>
+      <h2 class="govuk-heading-m">{{ "Donor" if (data['reporting'] == "hospitality-received-and-accepted") or
+        (data['reporting'] == "hospitality-received-and-rejected") else "Recipient"}} details</h2>
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -299,26 +300,38 @@ Question page template – {{ serviceName }} – GOV.UK Prototype Kit
             Event date
           </dt>
           <dd class="govuk-summary-list__value">
-            {% if(data['event-date'] == "2022-08-12") %}
-            12 August 2022
+            {% if(data['event-date'] == "2022-09-27") %}
+            27 September 2022
             {% endif %}
-            {% if(data['event-date'] == "2022-08-11") %}
-            11 August 2022
+            {% if(data['event-date'] == "2022-09-28") %}
+            28 September 2022
             {% endif %}
-            {% if(data['event-date'] == "2022-08-10") %}
-            10 August 2022
+            {% if(data['event-date'] == "2022-09-29") %}
+            29 September 2022
             {% endif %}
-            {% if(data['event-date'] == "2022-08-09") %}
-            09 August 2022
+            {% if(data['event-date'] == "2022-09-30") %}
+            30 September 2022
             {% endif %}
-            {% if(data['event-date'] == "2022-08-08") %}
-            08 August 2022
+            {% if(data['event-date'] == "2022-10-01") %}
+            01 October 2022
+            {% endif %}
+            {% if(data['event-date'] == "2022-10-02") %}
+            02 October 2022
+            {% endif %}
+            {% if(data['event-date'] == "2022-10-03") %}
+            03 October 2022
+            {% endif %}
+            {% if(data['event-date'] == "2022-10-04") %}
+            04 October 2022
+            {% endif %}
+            {% if(data['event-date'] == "2022-10-05") %}
+            05 October 2022
             {% endif %}
           </dd>
         </div>
 
 
-        {% if(data['received-or-offered'] == "offered") %}
+        {% if(data['reporting'] == "hospitality-offered") %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Total number of guests attending
@@ -360,14 +373,6 @@ Question page template – {{ serviceName }} – GOV.UK Prototype Kit
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Cost per person, in pounds
-          </dt>
-          <dd class="govuk-summary-list__value">
-            £{{ data['cost-per-person'] }}
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
             Total cost, in pounds
           </dt>
           <dd class="govuk-summary-list__value">
@@ -376,7 +381,7 @@ Question page template – {{ serviceName }} – GOV.UK Prototype Kit
         </div>
 
 
-        {% if(data['received-or-offered'] == "offered") %}
+        {% if(data['reporting'] == "hospitality-offered") %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Obtained from approved supplier
@@ -399,7 +404,7 @@ Question page template – {{ serviceName }} – GOV.UK Prototype Kit
       </dl>
 
 
-      {% if (data['individual-hospitality'] == "no" and data['delegated-authority-approval'] == "yes") %}
+      {% if (data['on-someones-behalf'] == "yes" and data['delegated-authority-approval'] == "yes") %}
       <h2 class="govuk-heading-m">Approver details</h2>
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
