@@ -15,14 +15,13 @@
 
     <h1 class="govuk-heading-l">Hospitality approval</h1>
 
-    <p>Due to the value of the hospitality and your grade, a 'delegated authority' must give their written approval.</p>
+    <p>The cost of the hospitality and your grade mean a 'delegated authority' must give their written approval.</p>
 
     <p><a href="https://ehdg--tst6.cx.ukg.oraclecloud.com/app/answers/detail/a_id/5011" class="govuk-link"
         rel="noreferrer noopener" target="_blank">Check who can approve hospitality (opens in new browser tab)</a>.
     </p>
     <div class="govuk-inset-text">
-      The offer of alcohol at any Home Office event must be approved in writing by an SCS 2 or above. This approval
-      must be received in advance in all cases.
+      The offer of alcohol at a Home Office event, you must have written SCS 2 approval in advance.
     </div>
 
     <form class="form" action="/delegated-authority-approval-redirect" method="post">
@@ -44,10 +43,21 @@
             </div>
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="delegated-authority-approval-2" name="delegated-authority-approval"
-                type="radio" value="no" {{ checked( "delegated-authority-approval" , "no" ) }}>
+                type="radio" value="no" {{ checked( "delegated-authority-approval" , "no" ) }}
+                data-aria-controls="conditional-reason">
               <label class="govuk-label govuk-radios__label" for="delegated-authority-approval-2">
                 No
               </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-reason">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="delegated-authority-disapproval-reason">
+                  Explain why
+                </label>
+                <textarea class="govuk-textarea" id="delegated-authority-disapproval-reason"
+                  name="delegated-authority-disapproval-reason"
+                  rows="3">{{ data['delegated-authority-disapproval-reason'] }}</textarea>
+              </div>
             </div>
           </div>
         </fieldset>

@@ -13,37 +13,39 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form class="form" action="/reporting-redirect" method="post">
+    <form class="form" action="other-party-details" method="post">
 
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-fieldset__heading">
-              {% if (data['for-someone-else'] == "no") %}
-              Did you receive or offer hospitality?
+              {% if (data['reporting'] == "hospitality-received") and (data['for-someone-else'] == "no")%}
+              Did you accept or reject hospitality?
               {% else %}
-              Did they receive or offer hospitality?
+              Did the recipient accept or reject hospitality?
               {% endif %}
             </h1>
           </legend>
           <div class="govuk-radios" data-module="govuk-radios">
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="reporting" name="reporting" type="radio"
-                value="hospitality-received" {{ checked( "reporting" , "hospitality-received" ) }}>
-              <label class="govuk-label govuk-radios__label" for="reporting">
-                Receive
+              <input class="govuk-radios__input" id="hospitality-decision" name="hospitality-decision" type="radio"
+                value="accept" {{ checked( "hospitality-decision" , "accept" ) }}>
+              <label class="govuk-label govuk-radios__label" for="hospitality-decision">
+                Accept
               </label>
             </div>
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="reporting-2" name="reporting" type="radio"
-                value="hospitality-offered" {{ checked( "reporting" , "hospitality-offered" ) }}>
-              <label class="govuk-label govuk-radios__label" for="reporting-2">
-                Offer
+              <input class="govuk-radios__input" id="hospitality-decision-2" name="hospitality-decision" type="radio"
+                value="reject" {{ checked( "hospitality-decision" , "reject" ) }}>
+              <label class="govuk-label govuk-radios__label" for="hospitality-decision-2">
+                Reject
               </label>
             </div>
           </div>
+
         </fieldset>
       </div>
+
 
       <button class="govuk-button" data-module="govuk-button">Continue</button>
 

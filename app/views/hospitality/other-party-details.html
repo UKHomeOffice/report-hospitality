@@ -13,19 +13,13 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <h1 class="govuk-heading-l">{{ "Donor" if (data['reporting'] == "hospitality-received-and-accepted") or
-      (data['reporting'] == "hospitality-received-and-rejected") else "Recipient"}} details
+    <h1 class="govuk-heading-l">{{ "Donor" if (data['reporting'] == "hospitality-received") else "Recipient"}} details
     </h1>
 
-    {% if (data['reporting'] == "hospitality-received-and-accepted") or (data['reporting'] ==
-    "hospitality-received-and-rejected") %}
-    <p class="govuk-body">The donor is the person or organisation who gave the hospitality. They could be inside or
-      outside the
-      Home Office.</p>
+    {% if (data['reporting'] == "hospitality-received") %}
+    <p class="govuk-body">The donor is the person or organisation who offered hospitality.</p>
     {% else %}
-    <p class="govuk-body">The recipient is the person or organisation who received the hospitality. They could be inside
-      or
-      outside the Home Office.</p>
+    <p class="govuk-body">The recipient is the person or organisation who received the hospitality.</p>
     {% endif %}
 
     <form class="form" action="event-details" method="post">

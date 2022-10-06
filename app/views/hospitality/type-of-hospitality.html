@@ -18,8 +18,8 @@
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset" aria-describedby="hospitality-type-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            Select the type of hospitality {{ "received" if (data['reporting'] == "hospitality-received-and-accepted" or
-            data['reporting'] == "hospitality-received-and-rejected") else "offered" }}
+            Select the type of hospitality {{ "received" if (data['reporting'] == "hospitality-received") else "offered"
+            }}
           </legend>
           <div id="hospitality-type-hint" class="govuk-hint">
             Select all that apply.
@@ -27,16 +27,9 @@
           <div class="govuk-checkboxes" data-module="govuk-checkboxes">
             <div class="govuk-checkboxes__item">
               <input class="govuk-checkboxes__input" id="hospitality-type" name="hospitality-type" type="checkbox"
-                value="lunch" {{ checked( "hospitality-type" , "lunch" ) }}>
+                value="food" {{ checked( "hospitality-type" , "food" ) }}>
               <label class="govuk-label govuk-checkboxes__label" for="hospitality-type">
-                Lunch
-              </label>
-            </div>
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="hospitality-type-2" name="hospitality-type" type="checkbox"
-                value="dinner" {{ checked( "hospitality-type" , "dinner" ) }}>
-              <label class="govuk-label govuk-checkboxes__label" for="hospitality-type-2">
-                Dinner
+                Food
               </label>
             </div>
             <div class="govuk-checkboxes__item">
@@ -44,6 +37,13 @@
                 value="drinks" {{ checked( "hospitality-type" , "drinks" ) }}>
               <label class="govuk-label govuk-checkboxes__label" for="hospitality-type-3">
                 Drinks
+              </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="hospitality-type-6" name="hospitality-type" type="checkbox"
+                value="transport" {{ checked( "hospitality-type" , "transport" ) }}>
+              <label class="govuk-label govuk-checkboxes__label" for="hospitality-type-6">
+                Transport
               </label>
             </div>
             <div class="govuk-checkboxes__item">
@@ -60,15 +60,7 @@
                 Accommodation
               </label>
             </div>
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="hospitality-type-6" name="hospitality-type" type="checkbox"
-                value="transport" {{ checked( "hospitality-type" , "transport" ) }}>
-              <label class="govuk-label govuk-checkboxes__label" for="hospitality-type-6">
-                Transport
-              </label>
-            </div>
           </div>
-
         </fieldset>
       </div>
 

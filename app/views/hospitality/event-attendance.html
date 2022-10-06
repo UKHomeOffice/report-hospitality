@@ -14,7 +14,7 @@
   <div class="govuk-grid-column-two-thirds">
 
     {% if (data['reporting'] == "hospitality-offered") %}
-    <h1 class="govuk-heading-l">Event attendance details</h1>
+    <h1 class="govuk-heading-l">Event attendance</h1>
     {% endif %}
 
     <form class="form" action="type-of-hospitality" method="post">
@@ -22,7 +22,7 @@
       {% if (data['reporting'] == "hospitality-offered") %}
       <div class="govuk-form-group">
         <label class="govuk-label govuk-label--m" for="number-of-guests">
-          Total number of guests attending
+          Number of guests, including civil servants
         </label>
         <input class="govuk-input govuk-input--width-3" id="number-of-guests" name="number-of-guests" type="number"
           value="{{ data['number-of-guests'] }}" step="1" min="1" autocomplete="off">
@@ -30,7 +30,7 @@
 
       <div class="govuk-form-group">
         <label class="govuk-label govuk-label--m" for="number-of-civil-servants">
-          Number of civil servants attending
+          Number of civil servants
         </label>
 
         <input class="govuk-input govuk-input--width-3" id="number-of-civil-servants" name="number-of-civil-servants"
@@ -38,8 +38,7 @@
       </div>
 
       <div class="govuk-inset-text">
-        Where civil servants are required to attend any hospitality event, they must not exceed 50% of the total
-        number of people attending.
+        Civil servants must not exceed 50% of the guests.
       </div>
 
       {% else %}
@@ -48,11 +47,11 @@
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-fieldset__heading">
-              Did you attend the hospitality event alone or accompanied?
+              Did you attend the event alone or accompanied?
             </h1>
           </legend>
           <div id="alone-or-accompanied-hint" class="govuk-hint">
-            For example, with a spouse, family members and/or friends.
+            For example, with family or friends.
           </div>
           <div class="govuk-radios" data-module="govuk-radios">
             <div class="govuk-radios__item">

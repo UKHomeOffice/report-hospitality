@@ -23,46 +23,50 @@
         <div class="govuk-error-summary__body">
           <ul class="govuk-list govuk-error-summary__list">
             <li>
-              <a href="#reporting">Select what type of hospitality you are reporting</a>
+              <a href="#reporting">
+                {% if (data['for-someone-else'] == "no") %}
+                Select if you received or offered hospitality
+                {% else %}
+                Select if they received or offered hospitality
+                {% endif %}
+              </a>
             </li>
           </ul>
         </div>
       </div>
 
-
-
       <div class="govuk-form-group govuk-form-group--error">
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-fieldset__heading">
-              What would you like to report?
+              {% if (data['for-someone-else'] == "no") %}
+              Did you receive or offer hospitality?
+              {% else %}
+              Did they receive or offer hospitality?
+              {% endif %}
             </h1>
           </legend>
           <p id="reporting-error" class="govuk-error-message">
-            <span class="govuk-visually-hidden">Error:</span>Select what type of hospitality you are reporting
+            <span class="govuk-visually-hidden">Error:</span>
+            {% if (data['for-someone-else'] == "no") %}
+            Select if you received or offered hospitality
+            {% else %}
+            Select if they received or offered hospitality
+            {% endif %}
           </p>
           <div class="govuk-radios" data-module="govuk-radios">
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="reporting" name="reporting" type="radio"
-                value="hospitality-received-and-accepted" {{ checked( "reporting" , "hospitality-received-and-accepted"
-                ) }}>
+                value="hospitality-received" {{ checked( "reporting" , "hospitality-received" ) }}>
               <label class="govuk-label govuk-radios__label" for="reporting">
-                Hospitality {{ "I" if (data['on-someones-behalf'] == "no")}} received and accepted
+                Receive
               </label>
             </div>
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="reporting-2" name="reporting" type="radio"
-                value="hospitality-received-and-rejected" {{ checked( "reporting" , "hospitality-received-and-rejected"
-                ) }}>
-              <label class="govuk-label govuk-radios__label" for="reporting-2">
-                Hospitality {{ "I" if (data['on-someones-behalf'] == "no")}} received and rejected
-              </label>
-            </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="reporting-3" name="reporting" type="radio"
                 value="hospitality-offered" {{ checked( "reporting" , "hospitality-offered" ) }}>
-              <label class="govuk-label govuk-radios__label" for="reporting-3">
-                Hospitality {{ "I" if (data['on-someones-behalf'] == "no")}} offered
+              <label class="govuk-label govuk-radios__label" for="reporting-2">
+                Offer
               </label>
             </div>
           </div>

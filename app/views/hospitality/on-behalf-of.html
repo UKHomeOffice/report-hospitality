@@ -19,28 +19,23 @@
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-fieldset__heading">
-              Who was the {{ "recipient" if (data['reporting'] == "hospitality-received-and-accepted") or
-              (data['reporting'] == "hospitality-received-and-rejected") else "donor"}} of the hospitality?
+              Who was the {{ "recipient" if (data['reporting'] == "hospitality-received") else "donor"}} of the
+              hospitality?
             </h1>
           </legend>
           <div class="govuk-radios" data-module="govuk-radios">
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="on-behalf-of" name="on-behalf-of" type="radio" value="employee" {{
-                checked( "on-behalf-of" , "employee" ) }}>
+              <input class="govuk-radios__input" id="on-behalf-of" name="on-behalf-of" type="radio" value="individual"
+                {{ checked( "on-behalf-of" , "individual" ) }}>
               <label class="govuk-label govuk-radios__label" for="on-behalf-of">
-                A Home Office employee
+                An individual
               </label>
             </div>
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="on-behalf-of-2" name="on-behalf-of" type="radio" value="other" {{
-                checked( "on-behalf-of" , "other" ) }}>
+                checked( "on-behalf-of" , "team-unit-department" ) }}>
               <label class="govuk-label govuk-radios__label" for="on-behalf-of-2">
-                Other {{ "recipient" if (data['reporting'] == "hospitality-received-and-accepted") or
-                (data['reporting'] == "hospitality-received-and-rejected") else "donor"}}
-              </label>
-              <div id="on-behalf-of-2-hint" class="govuk-hint govuk-radios__hint">
-                Could be a team, unit or department.
-              </div>
+                A team, unit or department
             </div>
           </div>
 
