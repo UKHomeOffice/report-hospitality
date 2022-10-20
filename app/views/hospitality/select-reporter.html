@@ -19,7 +19,7 @@
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-fieldset__heading">
-              Who was the {{ "recipient" if (data['reporting'] == "hospitality-received") else "donor"}} of the
+              Who {{ "received" if (data['reporting'] == "hospitality-received") else "offered"}} the
               hospitality?
             </h1>
           </legend>
