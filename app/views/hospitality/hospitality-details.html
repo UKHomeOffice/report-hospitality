@@ -19,11 +19,8 @@
 
       <div class="govuk-form-group">
         <label class="govuk-label govuk-label--m" for="reason-for-hospitality">
-          Reason for {{ "receiving" if (data['reporting'] == "hospitality-received") else "offering"}} hospitality
+          Reason for the hospitality
         </label>
-        <div id="reason-for-hospitality-hint" class="govuk-hint">
-          For example, hosting a dinner for 10 people.
-        </div>
         <input class="govuk-input" id="reason-for-hospitality" name="reason-for-hospitality"
           value="{{ data['reason-for-hospitality'] }}" type="text" autocomplete="off">
       </div>
