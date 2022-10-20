@@ -16,18 +16,38 @@
     <h1 class="govuk-heading-l">{{ "Recipient" if (data['reporting'] == "hospitality-received") else "Donor"}} details
     </h1>
 
-    <form class="form" action="/someone-else-details-redirect" method="post">
+    <form class="form" action="/team-unit-or-department-details-redirect" method="post">
 
-      <div class="govuk-form-group">
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert"
+        data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#team-unit-or-department-name">Enter a team, unit or department</a>
+            </li>
+            <li>
+              <a href="#home-office-representative-lookup">Enter representative</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="govuk-form-group govuk-form-group--error">
         <label class="govuk-label govuk-label--m" for="team-unit-or-department-name">
           Team, unit or department
         </label>
+        <p id="team-unit-or-department-name-error" class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span>Enter a team, unit or department
+        </p>
         <input class="govuk-input govuk-input--width-20" id="team-unit-or-department-name"
           name="team-unit-or-department-name" type="text" autocomplete="off"
           value="{{ data['team-unit-or-department-name'] }}">
       </div>
 
-      <div class="govuk-form-group lookup">
+      <div class="govuk-form-group govuk-form-group--error lookup">
         <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m"
             for="home-office-representative-lookup">
             Representative
@@ -36,7 +56,10 @@
         <div id="home-office-representative-lookup-hint" class="govuk-hint">
           Search for the name, employee number or email of a representative for the group.
         </div>
-        <input class="govuk-input govuk-input--width-20" id="home-office-representative-lookup"
+        <p id="someone-else-department-lookup-error" class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span>Enter representative
+        </p>
+        <input class="govuk-input govuk-input--width-20 govuk-input--error" id="home-office-representative-lookup"
           name="home-office-representative-lookup" value="{{ data['home-office-representative-lookup'] }}" type="search"
           autocomplete="off">
         <button id="home-office-representative-lookup-search-button" class="button-secondary" type="button">
@@ -118,29 +141,40 @@
         <div class="govuk-details__text">
           <p>Enter the representative's details.</p>
 
-          <div class="govuk-form-group">
-            <label class="govuk-label" for="ho-employee-name">
+          <div class="govuk-form-group govuk-form-group--error">
+            <label class="govuk-label" for="representative-name">
               Name
             </label>
-            <input class="govuk-input govuk-input--width-20" id="ho-employee-name" name="ho-employee-name" type="text"
-              spellcheck="false" autocomplete="off" value="{{ data['ho-employee-name'] }}">
+            <p id="representative-name-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span>Enter name
+            </p>
+            <input class="govuk-input govuk-input--width-20 govuk-input--error" id="representative-name"
+              name="representative-name" type="text" spellcheck="false" autocomplete="off"
+              value="{{ data['representative-name'] }}">
           </div>
 
-          <div class="govuk-form-group">
-            <label class="govuk-label" for="ho-employee-email">
+          <div class="govuk-form-group govuk-form-group--error">
+            <label class="govuk-label" for="representative-email">
               Email
             </label>
-            <input class="govuk-input govuk-input--width-20" id="ho-employee-email" name="ho-employee-email"
-              type="email" spellcheck="false" autocomplete="off" value="{{ data['ho-employee-email'] }}">
+            <p id="representative-name-email-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span>Enter email
+            </p>
+            <input class="govuk-input govuk-input--width-20 govuk-input--error" id="representative-email"
+              name="representative-email" type="email" spellcheck="false" autocomplete="off"
+              value="{{ data['representative-email'] }}">
           </div>
 
-          <div class="govuk-form-group">
-            <label class="govuk-label" for="ho-employee-cost-centre-code">
+          <div class="govuk-form-group govuk-form-group--error">
+            <label class="govuk-label" for="representative-cost-centre-code">
               Cost centre code
             </label>
-            <input class="govuk-input govuk-input--width-5" id="ho-employee-cost-centre-code"
-              name="ho-employee-cost-centre-code" type="text" spellcheck="false" autocomplete="off"
-              value="{{ data['ho-employee-cost-centre-code'] }}">
+            <p id="representative-cost-centre-code-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span>Enter cost centre code
+            </p>
+            <input class="govuk-input govuk-input--width-5 govuk-input--error" id="representative-cost-centre-code"
+              name="representative-cost-centre-code" type="text" spellcheck="false" autocomplete="off"
+              value="{{ data['representative-cost-centre-code'] }}">
           </div>
         </div>
       </details>

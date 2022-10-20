@@ -4,36 +4,27 @@ const router = express.Router()
 // Add your routes here - above the module.exports line
 
 ///// NAVIGATION ROUTES START /////
-router.post("/for-someone-else-redirect", (req, res) => {
-  let forSomeoneElse = req.session.data["for-someone-else"]
-
-  if (forSomeoneElse == undefined) {
-    res.redirect("hospitality/hospitality-for-someone-else-error")
-  } else {
-    res.redirect("hospitality/reporting")
-  }
-})
-
 router.post("/reporting-redirect", (req, res) => {
   let reporting = req.session.data["reporting"]
-  let forSomeoneElse = req.session.data["for-someone-else"]
 
   if (reporting == undefined) {
     res.redirect("hospitality/reporting-error")
-  } else if (reporting != undefined && forSomeoneElse == "yes") {
-    res.redirect("hospitality/on-behalf-of")
-  } else if (reporting != undefined && forSomeoneElse == "no") {
-    res.redirect("hospitality/decision")
+  } else {
+    res.redirect("hospitality/select-reporter")
   }
 })
 
-router.post("/on-behalf-of-redirect", (req, res) => {
-  let hospitalityOnBehalfOf = req.session.data["on-behalf-of"]
+router.post("/select-reporter-redirect", (req, res) => {
+  let reporter = req.session.data["reporter"]
 
-  if (hospitalityOnBehalfOf == "individual") {
+  if (reporter == "me") {
+    res.redirect("hospitality/decision")
+  } else if (reporter == "someone-else") {
     res.redirect("hospitality/employee-lookup")
+  } else if (reporter == "team-unit-department") {
+    res.redirect("hospitality/team-unit-or-department-details")
   } else {
-    res.redirect("hospitality/someone-else-details")
+    res.redirect("hospitality/select-reporter-error")
   }
 })
 
@@ -50,12 +41,15 @@ router.post("/employee-lookup-redirect", (req, res) => {
   }
 })
 
-router.post("/someone-else-details-redirect", (req, res) => {
+router.post("/team-unit-or-department-details-redirect", (req, res) => {
   let name = req.session.data["team-unit-or-department-name"]
   let homeOfficeRepresentativeLookup = req.session.data["home-office-representative-lookup"]
+  let reporting = req.session.data["reporting"]
 
   if (name == "" && homeOfficeRepresentativeLookup == "") {
-    res.redirect("hospitality/someone-else-details-error")
+    res.redirect("hospitality/team-unit-or-department-details-error")
+  } else if (reporting == "hospitality-received") {
+    res.redirect("hospitality/number-of-recipients")
   } else {
     res.redirect("hospitality/decision")
   }
@@ -63,9 +57,11 @@ router.post("/someone-else-details-redirect", (req, res) => {
 
 router.post("/event-details-redirect", (req, res) => {
   let reporting = req.session.data["reporting"]
-  let forSomeoneElse = req.session.data["for-someone-else"]
+  let reporter = req.session.data["reporter"]
 
-  if ((reporting == "hospitality-received" && forSomeoneElse == "no") || (reporting == "hospitality-offered")) {
+  if (reporting == "hospitality-received" && reporter == "me") {
+    res.redirect("hospitality/alone-or-accompanied")
+  } else if (reporting == "hospitality-offered") {
     res.redirect("hospitality/event-attendance")
   } else {
     res.redirect("hospitality/type-of-hospitality")
@@ -74,11 +70,11 @@ router.post("/event-details-redirect", (req, res) => {
 
 router.post("/hospitality-details-redirect", (req, res) => {
   let reporting = req.session.data["reporting"]
-  let forSomeoneElse = req.session.data["for-someone-else"]
+  let reporter = req.session.data["reporter"]
 
-  if (reporting == "hospitality-received" && forSomeoneElse == "no") {
+  if (reporting == "hospitality-received" && reporter == "me") {
     res.redirect("hospitality/summary")
-  } else if (reporting == "hospitality-received" && forSomeoneElse == "yes") {
+  } else if (reporting == "hospitality-received" && reporter != "me") {
     res.redirect("hospitality/delegated-authority-approval")
   } else {
     res.redirect("hospitality/approved-supplier")
@@ -86,22 +82,18 @@ router.post("/hospitality-details-redirect", (req, res) => {
 })
 
 router.post("/approved-supplier-redirect", (req, res) => {
-  let approvedSupplierUsed = req.session.data["approved-supplier-used"]
-  let forSomeoneElse = req.session.data["for-someone-else"]
+  let reporter = req.session.data["reporter"]
 
-  if (approvedSupplierUsed == "yes" && forSomeoneElse == "yes") {
+  if (reporter != "me") {
     res.redirect("hospitality/delegated-authority-approval")
-  } else if (approvedSupplierUsed == "yes" && forSomeoneElse == "no") {
-    res.redirect("hospitality/summary")
-  } else if (approvedSupplierUsed == "no" && forSomeoneElse == "yes") {
-    res.redirect("hospitality/delegated-authority-approval")
-  } else if (approvedSupplierUsed == "no" && forSomeoneElse == "no") {
+  } else {
     res.redirect("hospitality/summary")
   }
 })
 
 router.post("/delegated-authority-approval-redirect", (req, res) => {
   let delegatedAuthorityApproval = req.session.data["delegated-authority-approval"]
+
   if (delegatedAuthorityApproval == "yes") {
     res.redirect("hospitality/approver-lookup")
   } else {

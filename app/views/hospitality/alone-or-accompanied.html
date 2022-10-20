@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+{{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+<a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form class="form" action="type-of-hospitality" method="post">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Did you attend the event alone or accompanied?
+            </h1>
+          </legend>
+          <div id="alone-or-accompanied-hint" class="govuk-hint">
+            For example, with family or friends.
+          </div>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="alone-or-accompanied" name="alone-or-accompanied" type="radio"
+                value="alone" {{ checked( "alone-or-accompanied" , "alone" ) }}>
+              <label class="govuk-label govuk-radios__label" for="alone-or-accompanied">
+                Alone
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="alone-or-accompanied-2" name="alone-or-accompanied" type="radio"
+                value="accompanied" {{ checked( "alone-or-accompanied" , "accompanied" ) }}
+                data-aria-controls="conditional-number-of-accompaniers">
+              <label class="govuk-label govuk-radios__label" for="alone-or-accompanied-2">
+                Accompanied
+              </label>
+            </div>
+
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden"
+              id="conditional-number-of-accompaniers">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="conditional-number-of-accompaniers">
+                  Number of people that accompanied you
+                </label>
+                <input class="govuk-input govuk-input--width-3" id="number-of-accompaniers"
+                  name="number-of-accompaniers" type="number" value="{{ data['number-of-accompaniers'] }}" step="1"
+                  min="1" autocomplete="off">
+              </div>
+            </div>
+        </fieldset>
+      </div>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

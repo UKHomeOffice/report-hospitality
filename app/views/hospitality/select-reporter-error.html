@@ -13,7 +13,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form class="form" action="/on-behalf-of-redirect" method="post">
+    <form class="form" action="/select-reporter-redirect" method="post">
 
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset">
@@ -25,20 +25,26 @@
           </legend>
           <div class="govuk-radios" data-module="govuk-radios">
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="on-behalf-of" name="on-behalf-of" type="radio" value="individual"
-                {{ checked( "on-behalf-of" , "individual" ) }}>
-              <label class="govuk-label govuk-radios__label" for="on-behalf-of">
-                An individual
+              <input class="govuk-radios__input" id="reporter" name="reporter" type="radio" value="me" {{
+                checked( "reporter" , "me" ) }}>
+              <label class="govuk-label govuk-radios__label" for="reporter">
+                Me
               </label>
             </div>
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="on-behalf-of-2" name="on-behalf-of" type="radio" value="other" {{
-                checked( "on-behalf-of" , "team-unit-department" ) }}>
-              <label class="govuk-label govuk-radios__label" for="on-behalf-of-2">
+              <input class="govuk-radios__input" id="reporter-2" name="reporter" type="radio" value="someone-else" {{
+                checked( "reporter" , "someone-else" ) }}>
+              <label class="govuk-label govuk-radios__label" for="reporter-2">
+                Someone else
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="reporter-3" name="reporter" type="radio"
+                value="team-unit-department" {{ checked( "reporter" , "team-unit-department" ) }}>
+              <label class="govuk-label govuk-radios__label" for="reporter-3">
                 A team, unit or department
             </div>
           </div>
-
         </fieldset>
       </div>
 

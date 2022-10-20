@@ -24,11 +24,7 @@
           <ul class="govuk-list govuk-error-summary__list">
             <li>
               <a href="#reporting">
-                {% if (data['for-someone-else'] == "no") %}
-                Select if you received or offered hospitality
-                {% else %}
-                Select if they received or offered hospitality
-                {% endif %}
+                Error message tbc
               </a>
             </li>
           </ul>
@@ -39,34 +35,26 @@
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-fieldset__heading">
-              {% if (data['for-someone-else'] == "no") %}
-              Did you receive or offer hospitality?
-              {% else %}
-              Did they receive or offer hospitality?
-              {% endif %}
+              Was the hospitality received or offered?
             </h1>
           </legend>
           <p id="reporting-error" class="govuk-error-message">
             <span class="govuk-visually-hidden">Error:</span>
-            {% if (data['for-someone-else'] == "no") %}
-            Select if you received or offered hospitality
-            {% else %}
-            Select if they received or offered hospitality
-            {% endif %}
+            Error message tbc
           </p>
           <div class="govuk-radios" data-module="govuk-radios">
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="reporting" name="reporting" type="radio"
                 value="hospitality-received" {{ checked( "reporting" , "hospitality-received" ) }}>
               <label class="govuk-label govuk-radios__label" for="reporting">
-                Receive
+                Received
               </label>
             </div>
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="reporting-2" name="reporting" type="radio"
                 value="hospitality-offered" {{ checked( "reporting" , "hospitality-offered" ) }}>
               <label class="govuk-label govuk-radios__label" for="reporting-2">
-                Offer
+                Offered
               </label>
             </div>
           </div>
