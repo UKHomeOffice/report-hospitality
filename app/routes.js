@@ -30,11 +30,8 @@ router.post("/select-reporter-redirect", (req, res) => {
 
 router.post("/employee-lookup-redirect", (req, res) => {
   let employeeLookup = req.session.data["employee-lookup"]
-  let employeeName = req.session.data["employee-name"]
-  let employeeEmail = req.session.data["employee-email"]
-  let employeeCCC = req.session.data["employee-cost-centre-code"]
 
-  if (employeeLookup == "" && (employeeName == "" || employeeEmail == "" || employeeCCC == "")) {
+  if (employeeLookup == "") {
     res.redirect("hospitality/employee-lookup-error")
   } else {
     res.redirect("hospitality/decision")

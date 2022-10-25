@@ -106,35 +106,19 @@
           <span class="govuk-details__summary-text">
             I cannot find the {{ "recipient" if (data['reporting'] == "hospitality-received") else "donor"}} when I
             search
+          </span>
         </summary>
         <div class="govuk-details__text">
-          <p>Enter the {{ "recipient's" if (data['reporting'] == "hospitality-received") else "donor's"}}
-            details.</p>
+          <p>Try searching using their name, employee number or email.</p>
 
-          <div class="govuk-form-group">
-            <label class="govuk-label" for="employee-name">
-              Name
-            </label>
-            <input class="govuk-input govuk-input--width-20" id="employee-name" name="employee-name" type="text"
-              spellcheck="false" autocomplete="off" value="{{ data['employee-name'] }}">
-          </div>
+          <p>If you still cannot find them, then email <a
+              href="mailto: FinanceTransactionsPolicyandAssurance@homeoffice.gov.uk">FinanceTransactionsPolicyandAssurance@homeoffice.gov.uk</a>.
+          </p>
 
-          <div class="govuk-form-group">
-            <label class="govuk-label" for="employee-email">
-              Email
-            </label>
-            <input class="govuk-input govuk-input--width-20" id="employee-email" name="employee-email" type="email"
-              spellcheck="false" autocomplete="off" value="{{ data['employee-email'] }}">
-          </div>
+          <p class="govuk-body">Explain you cannot find the hospitality {{ "recipient" if (data['reporting'] ==
+            "hospitality-received")
+            else "donor"}} when you search.</p>
 
-          <div class="govuk-form-group">
-            <label class="govuk-label" for="employee-cost-centre-code">
-              Cost centre code
-            </label>
-            <input class="govuk-input govuk-input--width-5" id="employee-cost-centre-code"
-              name="employee-cost-centre-code" type="text" spellcheck="false" autocomplete="off"
-              value="{{ data['employee-cost-centre-code'] }}">
-          </div>
         </div>
       </details>
 
