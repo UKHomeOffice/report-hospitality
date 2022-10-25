@@ -37,7 +37,11 @@
           </label>
         </h1>
         <div id="employee-lookup-hint" class="govuk-hint">
+          {% if (data['reporting'] == "hospitality-offered") %}
+          The donor is the person who offered hospitality. Search for their name, employee number or email.
+          {% else %}
           Search for their name, employee number or email.
+          {% endif %}
         </div>
         <p id="employee-lookup-error" class="govuk-error-message">
           <span class="govuk-visually-hidden">Error:</span>Enter {{ "recipient" if (data['reporting'] ==

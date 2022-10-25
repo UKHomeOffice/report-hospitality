@@ -13,10 +13,14 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <h1 class="govuk-heading-l">{{ "Recipient" if (data['reporting'] == "hospitality-received") else "Donor"}} details
-    </h1>
-
     <form class="form" action="/team-unit-or-department-details-redirect" method="post">
+
+      <h1 class="govuk-heading-l">{{ "Recipient" if (data['reporting'] == "hospitality-received") else "Donor"}} details
+      </h1>
+
+      {% if (data['reporting'] == "hospitality-offered") %}
+      <p class="govuk-body">The donor is the team, unit or department who offered hospitality.</p>
+      {% endif %}
 
       <div class="govuk-form-group">
         <label class="govuk-label govuk-label--m" for="team-unit-or-department-name">

@@ -15,13 +15,33 @@
 
     <form class="form" action="/select-reporter-redirect" method="post">
 
-      <div class="govuk-form-group">
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert"
+        data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#reporter">
+                Select who {{ "received" if (data['reporting'] == "hospitality-received") else "offered"}} hospitality
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="govuk-form-group govuk-form-group--error">
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-fieldset__heading">
               Who {{ "received" if (data['reporting'] == "hospitality-received") else "offered"}} hospitality?
             </h1>
           </legend>
+          <p id="select-reporter-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span>
+            Select who {{ "received" if (data['reporting'] == "hospitality-received") else "offered"}} hospitality
+          </p>
           <div class="govuk-radios" data-module="govuk-radios">
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="reporter" name="reporter" type="radio" value="me" {{

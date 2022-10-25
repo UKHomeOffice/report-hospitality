@@ -22,7 +22,11 @@
           </label>
         </h1>
         <div id="employee-lookup-hint" class="govuk-hint">
+          {% if (data['reporting'] == "hospitality-offered") %}
+          The donor is the person who offered hospitality. Search for their name, employee number or email.
+          {% else %}
           Search for their name, employee number or email.
+          {% endif %}
         </div>
         <input class="govuk-input govuk-input--width-20" id="employee-lookup" name="employee-lookup" type="search"
           autocomplete="off" value="{{ data['employee-lookup'] }}">

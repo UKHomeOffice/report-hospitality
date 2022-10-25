@@ -16,6 +16,10 @@
     <h1 class="govuk-heading-l">{{ "Donor" if (data['reporting'] == "hospitality-received") else "Recipient"}} details
     </h1>
 
+    {% if (data['reporting'] == "hospitality-received") %}
+    <p class="govuk-body">The donor is the person or organisation who offered hospitality.</p>
+    {% endif %}
+
     <form class="form" action="event-details" method="post">
 
       <div class="govuk-form-group">
