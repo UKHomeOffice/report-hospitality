@@ -59,7 +59,7 @@ router.post("/event-details-redirect", (req, res) => {
   if (reporting == "hospitality-received" && reporter == "me") {
     res.redirect("hospitality/alone-or-accompanied")
   } else if (reporting == "hospitality-offered") {
-    res.redirect("hospitality/event-attendance")
+    res.redirect("hospitality/event-more-details")
   } else {
     res.redirect("hospitality/type-of-hospitality")
   }
@@ -67,24 +67,11 @@ router.post("/event-details-redirect", (req, res) => {
 
 router.post("/hospitality-details-redirect", (req, res) => {
   let reporting = req.session.data["reporting"]
-  let reporter = req.session.data["reporter"]
 
-  if (reporting == "hospitality-received" && reporter == "me") {
-    res.redirect("hospitality/summary")
-  } else if (reporting == "hospitality-received" && reporter != "me") {
+  if (reporting == "hospitality-received") {
     res.redirect("hospitality/delegated-authority-approval")
   } else {
     res.redirect("hospitality/approved-supplier")
-  }
-})
-
-router.post("/approved-supplier-redirect", (req, res) => {
-  let reporter = req.session.data["reporter"]
-
-  if (reporter != "me") {
-    res.redirect("hospitality/delegated-authority-approval")
-  } else {
-    res.redirect("hospitality/summary")
   }
 })
 
