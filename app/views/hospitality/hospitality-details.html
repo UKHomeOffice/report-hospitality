@@ -25,7 +25,77 @@
           value="{{ data['reason-for-hospitality'] }}" type="text" autocomplete="off">
       </div>
 
+      <h2 class="govuk-heading-m">Cost of hospitality, in pounds</h2>
+      <p>If you do not know, give your best estimate.</p>
+
+      {% for hospitalityType in data['hospitality-type'] %}
+      {% if (hospitalityType == "food") %}
       <div class="govuk-form-group">
+        <label class="govuk-label govuk-label--s" for="food-cost">
+          Food
+        </label>
+        <div class="govuk-input__wrapper">
+          <div class="govuk-input__prefix" aria-hidden="true">£</div>
+          <input class="govuk-input govuk-input--width-5" id="food-cost" name="food-cost"
+            value="{{ data['food-cost'] }}" type="text" spellcheck="false" autocomplete="off">
+        </div>
+      </div>
+      {% endif %}
+
+      {% if (hospitalityType == "drinks") %}
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-label--s" for="drinks-cost">
+          Drinks
+        </label>
+        <div class="govuk-input__wrapper">
+          <div class="govuk-input__prefix" aria-hidden="true">£</div>
+          <input class="govuk-input govuk-input--width-5" id="drinks-cost" name="drinks-cost"
+            value="{{ data['drinks-cost'] }}" type="text" spellcheck="false" autocomplete="off">
+        </div>
+      </div>
+      {% endif %}
+
+      {% if (hospitalityType == "transport") %}
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-label--s" for="transport-cost">
+          Transport
+        </label>
+        <div class="govuk-input__wrapper">
+          <div class="govuk-input__prefix" aria-hidden="true">£</div>
+          <input class="govuk-input govuk-input--width-5" id="transport-cost" name="transport-cost"
+            value="{{ data['transport-cost'] }}" type="text" spellcheck="false" autocomplete="off">
+        </div>
+      </div>
+      {% endif %}
+
+      {% if (hospitalityType == "entertainment") %}
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-label--s" for="entertainment-cost">
+          Entertainment
+        </label>
+        <div class="govuk-input__wrapper">
+          <div class="govuk-input__prefix" aria-hidden="true">£</div>
+          <input class="govuk-input govuk-input--width-5" id="entertainment-cost" name="entertainment-cost"
+            value="{{ data['entertainment-cost'] }}" type="text" spellcheck="false" autocomplete="off">
+        </div>
+      </div>
+      {% endif %}
+
+      {% if (hospitalityType == "accommodation") %}
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-label--s" for="accommodation-cost">
+          Accommodation
+        </label>
+        <div class="govuk-input__wrapper">
+          <div class="govuk-input__prefix" aria-hidden="true">£</div>
+          <input class="govuk-input govuk-input--width-5" id="accommodation-cost" name="accommodation-cost"
+            value="{{ data['accommodation-cost'] }}" type="text" spellcheck="false" autocomplete="off">
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+
+      <!-- <div class="govuk-form-group">
         <label class="govuk-label govuk-label--m" for="total-cost">
           Cost, in pounds
         </label>
@@ -37,7 +107,7 @@
           <input class="govuk-input govuk-input--width-5" id="total-cost" name="total-cost"
             value="{{ data['total-cost'] }}" type="text" spellcheck="false" autocomplete="off">
         </div>
-      </div>
+      </div> -->
 
       <button class="govuk-button" data-module="govuk-button">Continue</button>
 

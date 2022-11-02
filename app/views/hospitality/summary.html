@@ -400,15 +400,36 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Total cost, in pounds
+            Cost of hospitality, in pounds
           </dt>
           <dd class="govuk-summary-list__value">
-            £{{ data['total-cost'] }}
+            {% for hospitalityType in data['hospitality-type'] %}
+
+            {% if (hospitalityType == "food") %}
+            <p>Food: £{{ data['food-cost'] }}</p>
+            {% endif %}
+
+            {% if (hospitalityType == "drinks") %}
+            <p>Drinks: £{{ data['drinks-cost'] }}</p>
+            {% endif %}
+
+            {% if (hospitalityType == "transport") %}
+            <p>Transport: £{{ data['transport-cost'] }}</p>
+            {% endif %}
+
+            {% if (hospitalityType == "entertainment") %}
+            <p>Entertainment: £{{ data['entertainment-cost'] }}</p>
+            {% endif %}
+
+            {% if (hospitalityType == "accommodation") %}
+            <p>Accommodation: £{{ data['accommodation-cost'] }}</p>
+            {% endif %}
+
+            {% endfor %}
           </dd>
         </div>
 
-        {% if(data['reporting'] == "hospitality-offered") %}
-        <div class="govuk-summary-list__row">
+        {% if(data['reporting'] == " hospitality-offered") %} <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Used approved suppliers
           </dt>
