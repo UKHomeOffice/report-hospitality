@@ -406,23 +406,23 @@
             {% for hospitalityType in data['hospitality-type'] %}
 
             {% if (hospitalityType == "food") %}
-            <p>Food: £{{ data['food-cost'] }}</p>
+            <p>Food cost: £{{ data['food-cost'] }}</p>
             {% endif %}
 
             {% if (hospitalityType == "drinks") %}
-            <p>Drinks: £{{ data['drinks-cost'] }}</p>
+            <p>Drinks cost: £{{ data['drinks-cost'] }}</p>
             {% endif %}
 
             {% if (hospitalityType == "transport") %}
-            <p>Transport: £{{ data['transport-cost'] }}</p>
+            <p>Transport cost: £{{ data['transport-cost'] }}</p>
             {% endif %}
 
             {% if (hospitalityType == "entertainment") %}
-            <p>Entertainment: £{{ data['entertainment-cost'] }}</p>
+            <p>Entertainment cost: £{{ data['entertainment-cost'] }}</p>
             {% endif %}
 
             {% if (hospitalityType == "accommodation") %}
-            <p>Accommodation: £{{ data['accommodation-cost'] }}</p>
+            <p>Accommodation cost: £{{ data['accommodation-cost'] }}</p>
             {% endif %}
 
             {% endfor %}
@@ -432,7 +432,7 @@
         {% if(data['reporting'] == "hospitality-offered") %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Used approved suppliers
+            Used approved supplier
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['approved-supplier-used'] | capitalize}}
@@ -442,7 +442,7 @@
         {% if(data['approved-supplier-used'] == "no") %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Reason why approved suppliers not used
+            Reason approved supplier was not used
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['approved-supplier-not-used-reason'] }}
@@ -497,7 +497,7 @@
         {% if (data['delegated-authority-approval'] == "no") %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Reason why approval not obtained
+            Reason approval was not obtained
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['delegated-authority-disapproval-reason'] }}

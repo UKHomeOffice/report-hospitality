@@ -32,7 +32,7 @@
       {% if (hospitalityType == "food") %}
       <div class="govuk-form-group">
         <label class="govuk-label govuk-label--s" for="food-cost">
-          Food
+          Food cost
         </label>
         <div class="govuk-input__wrapper">
           <div class="govuk-input__prefix" aria-hidden="true">£</div>
@@ -45,7 +45,7 @@
       {% if (hospitalityType == "drinks") %}
       <div class="govuk-form-group">
         <label class="govuk-label govuk-label--s" for="drinks-cost">
-          Drinks
+          Drinks cost
         </label>
         <div class="govuk-input__wrapper">
           <div class="govuk-input__prefix" aria-hidden="true">£</div>
@@ -58,7 +58,7 @@
       {% if (hospitalityType == "transport") %}
       <div class="govuk-form-group">
         <label class="govuk-label govuk-label--s" for="transport-cost">
-          Transport
+          Transport cost
         </label>
         <div class="govuk-input__wrapper">
           <div class="govuk-input__prefix" aria-hidden="true">£</div>
@@ -71,7 +71,7 @@
       {% if (hospitalityType == "entertainment") %}
       <div class="govuk-form-group">
         <label class="govuk-label govuk-label--s" for="entertainment-cost">
-          Entertainment
+          Entertainment cost
         </label>
         <div class="govuk-input__wrapper">
           <div class="govuk-input__prefix" aria-hidden="true">£</div>
@@ -84,7 +84,7 @@
       {% if (hospitalityType == "accommodation") %}
       <div class="govuk-form-group">
         <label class="govuk-label govuk-label--s" for="accommodation-cost">
-          Accommodation
+          Accommodation cost
         </label>
         <div class="govuk-input__wrapper">
           <div class="govuk-input__prefix" aria-hidden="true">£</div>
@@ -94,20 +94,6 @@
       </div>
       {% endif %}
       {% endfor %}
-
-      <!-- <div class="govuk-form-group">
-        <label class="govuk-label govuk-label--m" for="total-cost">
-          Cost, in pounds
-        </label>
-        <div id="total-cost-hint" class="govuk-hint">
-          If you do not know, give your best estimate.
-        </div>
-        <div class="govuk-input__wrapper">
-          <div class="govuk-input__prefix" aria-hidden="true">£</div>
-          <input class="govuk-input govuk-input--width-5" id="total-cost" name="total-cost"
-            value="{{ data['total-cost'] }}" type="text" spellcheck="false" autocomplete="off">
-        </div>
-      </div> -->
 
       <button class="govuk-button" data-module="govuk-button">Continue</button>
 
