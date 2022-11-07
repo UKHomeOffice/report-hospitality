@@ -11,11 +11,9 @@
 {% block content %}
 
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-column-full">
 
     <h1 class="govuk-heading-l">Check and submit your answers</h1>
-
-    <div class="govuk-body">Go back to change your answers if you need to.</div>
 
     <form class="form" action="confirmation" method="post">
 
@@ -30,6 +28,11 @@
             {% else %}
             Offered
             {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="reporting">
+              Change<span class="govuk-visually-hidden"> received or offered</span>
+            </a>
           </dd>
         </div>
 
@@ -52,6 +55,11 @@
             {% endif %}
             {% endif %}
           </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="decision">
+              Change<span class="govuk-visually-hidden"> accepted or received</span>
+            </a>
+          </dd>
         </div>
 
         {% if(data['reporting'] == "hospitality-received" and data['reporter'] == "me") %}
@@ -65,6 +73,11 @@
             {% else %}
             Accompanied by {{data['number-of-accompaniers']}} people
             {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="alone-or-accompanied">
+              Change<span class="govuk-visually-hidden"> attended alone or accompanied</span>
+            </a>
           </dd>
         </div>
         {% endif %}
@@ -81,6 +94,20 @@
           </dt>
           <dd class="govuk-summary-list__value">
             Cahil De Menezes
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="select-reporter">
+              Change<span class="govuk-visually-hidden"> {{ "recipient" if (data['reporting'] == "hospitality-received")
+                else "donor"}}</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Employee number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            123454
           </dd>
         </div>
         <div class="govuk-summary-list__row">
@@ -138,6 +165,20 @@
           <dd class="govuk-summary-list__value">
             Daniel Blair
           </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="employee-lookup">
+              Change<span class="govuk-visually-hidden"> {{ "recipient" if (data['reporting'] == "hospitality-received")
+                else "donor"}}</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Employee number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            123451
+          </dd>
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -194,6 +235,11 @@
           <dd class="govuk-summary-list__value">
             {{ data['team-unit-or-department-name'] }}
           </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="team-unit-or-department-details">
+              Change<span class="govuk-visually-hidden"> team, unit or department</span>
+            </a>
+          </dd>
         </div>
         {% if (data['reporting'] == "hospitality-received") %}
         <div class="govuk-summary-list__row">
@@ -203,10 +249,14 @@
           <dd class="govuk-summary-list__value">
             {{ data['number-of-recipients'] }}
           </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="number-of-recipients">
+              Change<span class="govuk-visually-hidden"> number of recipients</span>
+            </a>
+          </dd>
         </div>
         {% endif %}
       </dl>
-
       <h3 class="govuk-heading-s">
         Representative
       </h3>
@@ -217,6 +267,19 @@
           </dt>
           <dd class="govuk-summary-list__value">
             Max Thompson
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="team-unit-or-department-details">
+              Change<span class="govuk-visually-hidden"> representative</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Employee number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            123452
           </dd>
         </div>
         <div class="govuk-summary-list__row">
@@ -272,13 +335,28 @@
           <dd class="govuk-summary-list__value">
             {{ data['other-party-name'] }}
           </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="other-party-details">
+              Change<span class="govuk-visually-hidden"> {{ "donor" if (data['reporting'] == "hospitality-received")
+                else
+                "recipient"}} name</span>
+            </a>
+          </dd>
         </div>
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Contact details
           </dt>
           <dd class="govuk-summary-list__value">
             <pre>{{ data['other-party-contact-details'] }}</pre>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="other-party-details">
+              Change<span class="govuk-visually-hidden"> {{ "donor" if (data['reporting'] == "hospitality-received")
+                else
+                "recipient"}} contact details</span>
+            </a>
           </dd>
         </div>
       </dl>
@@ -294,7 +372,13 @@
               {{ data['event-name'] }}
             </ul>
           </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="event-details">
+              Change<span class="govuk-visually-hidden"> event name</span>
+            </a>
+          </dd>
         </div>
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Type of event
@@ -302,7 +386,13 @@
           <dd class="govuk-summary-list__value">
             {{ data['event-type'] }}
           </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="event-details">
+              Change<span class="govuk-visually-hidden"> type of event</span>
+            </a>
+          </dd>
         </div>
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Event date
@@ -354,7 +444,13 @@
             14 November 2022
             {% endif %}
           </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="event-details">
+              Change<span class="govuk-visually-hidden"> event date</span>
+            </a>
+          </dd>
         </div>
+
         {% if(data['reporting'] == "hospitality-offered") %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -363,13 +459,24 @@
           <dd class="govuk-summary-list__value">
             {{ data['number-of-guests'] }}
           </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="event-more-details">
+              Change<span class="govuk-visually-hidden"> number of guests, including civil servants</span>
+            </a>
+          </dd>
         </div>
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Number of civil servants
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['number-of-civil-servants'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="event-more-details">
+              Change<span class="govuk-visually-hidden"> number of civil servants</span>
+            </a>
           </dd>
         </div>
         {% endif %}
@@ -389,7 +496,13 @@
               {% endfor %}
             </ul>
           </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="type-of-hospitality">
+              Change<span class="govuk-visually-hidden"> type of hospitality</span>
+            </a>
+          </dd>
         </div>
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Reason for hospitality
@@ -397,10 +510,16 @@
           <dd class="govuk-summary-list__value">
             {{ data['reason-for-hospitality'] }}
           </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="hospitality-details">
+              Change<span class="govuk-visually-hidden"> reason for hospitality</span>
+            </a>
+          </dd>
         </div>
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Cost of hospitality, in pounds
+            Cost, in pounds
           </dt>
           <dd class="govuk-summary-list__value">
             {% for hospitalityType in data['hospitality-type'] %}
@@ -427,6 +546,11 @@
 
             {% endfor %}
           </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="hospitality-details">
+              Change<span class="govuk-visually-hidden"> cost of hospitality</span>
+            </a>
+          </dd>
         </div>
 
         {% if(data['reporting'] == "hospitality-offered") %}
@@ -436,6 +560,11 @@
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['approved-supplier-used'] | capitalize}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="approved-supplier">
+              Change<span class="govuk-visually-hidden"> used approved supplier</span>
+            </a>
           </dd>
         </div>
 
@@ -447,39 +576,13 @@
           <dd class="govuk-summary-list__value">
             {{ data['approved-supplier-not-used-reason'] }}
           </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="approved-supplier">
+              Change<span class="govuk-visually-hidden"> reason approved supplier was not used</span>
+            </a>
+          </dd>
         </div>
         {% endif %}
-        {% endif %}
-      </dl>
-
-
-      {% if (data['for-someone-else'] == "yes" and data['delegated-authority-approval'] == "yes") %}
-      <h2 class="govuk-heading-m">Approver details</h2>
-      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Name
-          </dt>
-          <dd class="govuk-summary-list__value">
-            Cahil De Menezes
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Email
-          </dt>
-          <dd class="govuk-summary-list__value">
-            cahil.de_menezes@homeoffice.gov.uk
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Grade
-          </dt>
-          <dd class="govuk-summary-list__value">
-            SCS 2
-          </dd>
-        </div>
         {% endif %}
       </dl>
 
@@ -492,6 +595,11 @@
           <dd class="govuk-summary-list__value">
             {{ data['delegated-authority-approval'] | capitalize }}
           </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="delegated-authority-approval">
+              Change<span class="govuk-visually-hidden"> approval obtained</span>
+            </a>
+          </dd>
         </div>
 
         {% if (data['delegated-authority-approval'] == "no") %}
@@ -501,6 +609,11 @@
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['delegated-authority-disapproval-reason'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="delegated-authority-approval">
+              Change<span class="govuk-visually-hidden"> reason approval was not obtained</span>
+            </a>
           </dd>
         </div>
         {% endif %}
@@ -515,6 +628,19 @@
           </dt>
           <dd class="govuk-summary-list__value">
             Andrea Richardson
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="approver-lookup">
+              Change<span class="govuk-visually-hidden"> approver</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Employee number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            123453
           </dd>
         </div>
         <div class="govuk-summary-list__row">
@@ -570,13 +696,24 @@
           <dd class="govuk-summary-list__value">
             {{ data['approver-name']}}
           </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="approver-lookup">
+              Change<span class="govuk-visually-hidden"> approver name</span>
+            </a>
+          </dd>
         </div>
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Email
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['approver-email']}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="approver-lookup">
+              Change<span class="govuk-visually-hidden"> approver email</span>
+            </a>
           </dd>
         </div>
       </dl>
