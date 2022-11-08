@@ -71,7 +71,11 @@
             {% if(data['alone-or-accompanied'] == "alone") %}
             Alone
             {% else %}
+            {% if(data['number-of-accompaniers'] == "1") %}
+            Accompanied by 1 person
+            {% else %}
             Accompanied by {{data['number-of-accompaniers']}} people
+            {% endif %}
             {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
@@ -398,51 +402,7 @@
             Event date
           </dt>
           <dd class="govuk-summary-list__value">
-            {% if(data['event-date'] == "2022-10-31") %}
-            31 October 2022
-            {% endif %}
-            {% if(data['event-date'] == "2022-11-01") %}
-            01 November 2022
-            {% endif %}
-            {% if(data['event-date'] == "2022-11-02") %}
-            02 November 2022
-            {% endif %}
-            {% if(data['event-date'] == "2022-11-03") %}
-            03 November 2022
-            {% endif %}
-            {% if(data['event-date'] == "2022-11-04") %}
-            04 November 2022
-            {% endif %}
-            {% if(data['event-date'] == "2022-11-05") %}
-            05 November 2022
-            {% endif %}
-            {% if(data['event-date'] == "2022-11-06") %}
-            06 November 2022
-            {% endif %}
-            {% if(data['event-date'] == "2022-11-07") %}
-            07 November 2022
-            {% endif %}
-            {% if(data['event-date'] == "2022-11-08") %}
-            08 November 2022
-            {% endif %}
-            {% if(data['event-date'] == "2022-11-09") %}
-            09 November 2022
-            {% endif %}
-            {% if(data['event-date'] == "2022-11-10") %}
-            10 November 2022
-            {% endif %}
-            {% if(data['event-date'] == "2022-11-11") %}
-            11 November 2022
-            {% endif %}
-            {% if(data['event-date'] == "2022-11-12") %}
-            12 November 2022
-            {% endif %}
-            {% if(data['event-date'] == "2022-11-13") %}
-            13 November 2022
-            {% endif %}
-            {% if(data['event-date'] == "2022-11-14") %}
-            14 November 2022
-            {% endif %}
+            {{ data["formatted-event-date"] }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="event-details">
@@ -552,6 +512,16 @@
             </a>
           </dd>
         </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Total cost
+          </dt>
+          <dd class="govuk-summary-list__value">
+            £{{ data['total-cost-of-hospitality'] }}
+          </dd>
+        </div>
+
 
         {% if(data['reporting'] == "hospitality-offered") %}
         <div class="govuk-summary-list__row">

@@ -21,8 +21,8 @@
         <label class="govuk-label govuk-label--m" for="number-of-guests">
           Number of guests, including civil servants
         </label>
-        <input class="govuk-input govuk-input--width-3" id="number-of-guests" name="number-of-guests" type="number"
-          value="{{ data['number-of-guests'] }}" step="1" min="1" autocomplete="off">
+        <input class="govuk-input govuk-input--width-3" id="number-of-guests" name="number-of-guests" type="text"
+          value="{{ data['number-of-guests'] }}" autocomplete="off">
       </div>
 
       <div class="govuk-form-group">
@@ -31,7 +31,7 @@
         </label>
 
         <input class="govuk-input govuk-input--width-3" id="number-of-civil-servants" name="number-of-civil-servants"
-          type="number" value="{{ data['number-of-civil-servants'] }}" step="1" min="1" autocomplete="off">
+          type="text" value="{{ data['number-of-civil-servants'] }}" autocomplete="off">
       </div>
 
       <div class="govuk-inset-text">

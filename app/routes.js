@@ -52,9 +52,19 @@ router.post("/team-unit-or-department-details-redirect", (req, res) => {
   }
 })
 
+function getFormattedDate(unformattedDate) {
+  let date = new Date(unformattedDate)
+  let monthName = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+  return date.getDate() + " " + monthName[date.getMonth()] + " " + date.getFullYear()
+}
+
 router.post("/event-details-redirect", (req, res) => {
+  let eventDate = req.session.data["event-date"]
   let reporting = req.session.data["reporting"]
   let reporter = req.session.data["reporter"]
+
+  if (eventDate != "") req.session.data["formatted-event-date"] = getFormattedDate(eventDate)
 
   if (reporting == "hospitality-received" && reporter == "me") {
     res.redirect("hospitality/alone-or-accompanied")
@@ -65,8 +75,28 @@ router.post("/event-details-redirect", (req, res) => {
   }
 })
 
+function costOfHospitality(req) {
+  let foodCost = parseFloat(req.session.data["food-cost"]) || 0
+  let drinksCost = parseFloat(req.session.data["drinks-cost"]) || 0
+  let transportCost = parseFloat(req.session.data["transport-cost"]) || 0
+  let entertainmentCost = parseFloat(req.session.data["entertainment-cost"]) || 0
+  let accommodationCost = parseFloat(req.session.data["accommodation-cost"]) || 0
+
+  let totalCost = 0
+
+  if (req.session.data["hospitality-type"].includes("food")) totalCost += foodCost
+  if (req.session.data["hospitality-type"].includes("drinks")) totalCost += drinksCost
+  if (req.session.data["hospitality-type"].includes("transport")) totalCost += transportCost
+  if (req.session.data["hospitality-type"].includes("entertainment")) totalCost += entertainmentCost
+  if (req.session.data["hospitality-type"].includes("accommodation")) totalCost += accommodationCost
+
+  return totalCost.toFixed(2)
+}
+
 router.post("/hospitality-details-redirect", (req, res) => {
   let reporting = req.session.data["reporting"]
+
+  req.session.data["total-cost-of-hospitality"] = costOfHospitality(req)
 
   if (reporting == "hospitality-received") {
     res.redirect("hospitality/delegated-authority-approval")
