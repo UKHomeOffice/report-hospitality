@@ -1,3 +1,4 @@
+const e = require('express')
 const express = require('express')
 const router = express.Router()
 
@@ -72,6 +73,16 @@ router.post("/event-details-redirect", (req, res) => {
     res.redirect("hospitality/event-more-details")
   } else {
     res.redirect("hospitality/type-of-hospitality")
+  }
+})
+
+router.post("/type-of-hospitality-redirect", (req, res) => {
+  let hospitalityType = req.session.data["hospitality-type"]
+
+  if (hospitalityType == undefined) {
+    res.redirect("hospitality/type-of-hospitality-error")
+  } else {
+    res.redirect("hospitality/hospitality-details")
   }
 })
 
